@@ -51,12 +51,12 @@ function backup(){
     var data = {
         name: $name.val()
     };
-    plugins.backup.save(data, onSuccess.bind(this, "backup"), onError.bind(this, "backup"));
+    cordova.plugin.cloudsettings.save(data, onSuccess.bind(this, "backup"), onError.bind(this, "backup"));
 }
 
 function restore(){
     log("restore");
-    plugins.backup.restore(function(data) {
+    cordova.plugin.cloudsettings.restore(function(data) {
         onSuccess("restore: "+JSON.stringify(data));
         if (data) {
             $name.val(data.name);
