@@ -1,0 +1,7 @@
+/.idea
+/platforms
+/plugins/*/**
+/plugins/android.json
+/plugins/ios.json
+/node_modules
+/package-lock.json
