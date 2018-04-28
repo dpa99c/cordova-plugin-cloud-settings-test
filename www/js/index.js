@@ -8,10 +8,12 @@ function onDeviceReady(){
 
     cordova.plugin.cloudsettings.onRestore(onRestore);
 
-    checkExists(function(exists){
-        if(exists){
-            loadSettings();
-        }
+    cordova.plugin.cloudsettings.enableDebug(function(){
+        checkExists(function(exists){
+            if(exists){
+                loadSettings();
+            }
+        });
     });
 }
 $(document).on('deviceready', onDeviceReady);
