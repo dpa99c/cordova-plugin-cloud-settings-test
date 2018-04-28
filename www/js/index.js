@@ -1,14 +1,24 @@
-var $output, $name;
+var $output, $data, $exists;
 function onDeviceReady(){
     $output = $('#log-output');
-    $name = $('#name');
+    $data = $('#data');
+    $exists = $('#exists');
+
     log("deviceready");
+
+    cordova.plugin.cloudsettings.onRestore(onRestore);
+
+    checkExists(function(exists){
+        if(exists){
+            loadSettings();
+        }
+    });
 }
 $(document).on('deviceready', onDeviceReady);
 
-function clear(){
+function clearUI(){
     $output.empty();
-    $name.val('');
+    $data.val('');
 }
 
 function stringify(str){
@@ -46,23 +56,33 @@ function onSuccess(action){
     log(action +": successful");
 }
 
-function backup(){
-    log("backup");
-    var data = {
-        name: $name.val()
-    };
-    cordova.plugin.cloudsettings.save(data, onSuccess.bind(this, "backup"), onError.bind(this, "backup"));
+function loadSettings(){
+    cordova.plugin.cloudsettings.load(function(settings){
+        onSuccess("loadSettings");
+        $data.val(settings.data);
+    }, onError.bind(this, "loadSettings"));
 }
 
-function restore(){
-    log("restore");
-    cordova.plugin.cloudsettings.restore(function(data) {
-        onSuccess("restore: "+JSON.stringify(data));
-        if (data) {
-            $name.val(data.name);
-            log("data restored");
-        } else {
-            log("no data to restore");
-        }
-    }, onError.bind(this, "restore"));
+function saveSettings(){
+    log("saveSettings");
+    var data = {
+        data: $data.val()
+    };
+    cordova.plugin.cloudsettings.save(data, function(){
+        onSuccess("saveSettings");
+        checkExists();
+    }, onError.bind(this, "saveSettings"));
+}
+
+function checkExists(cb){
+    cb = cb || function(){};
+    cordova.plugin.cloudsettings.exists(function(exists) {
+        $exists.text(exists ? "TRUE" : "FALSE");
+        cb(exists);
+    });
+}
+
+function onRestore(){
+    log("onRestore");
+    loadSettings();
 }

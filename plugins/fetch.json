@@ -16,5 +16,13 @@
     "variables": {
       "BACKUP_SERVICE_KEY": "AEdPqrEAAAAIJJfjFAwKjjOgGlieOvf9-LizY218CFWy1z0bcQ"
     }
+  },
+  "cordova-plugin-file": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file@*"
+    },
+    "is_top_level": false,
+    "variables": {}
   }
 }

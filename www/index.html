@@ -7,19 +7,23 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <title>Hello World</title>
+    <title>Cloud Settings Test</title>
 </head>
 <body>
 
 <div class="field">
-    <label for="name">Name</label>
-    <input id="name" placeholder="Enter name" />
+    <p>Cloud settings exist: <span id="exists"></span></p>
 </div>
 
 <div class="field">
-    <button onclick="backup()">Backup</button>
-    <button onclick="restore()">Restore</button>
-    <button onclick="clear()">Clear</button>
+    <label for="data">Data</label>
+    <input id="data" placeholder="Enter some data" />
+</div>
+
+<div class="field">
+    <button onclick="saveSettings()">Save</button>
+    <button onclick="loadSettings()">Load</button>
+    <button onclick="clearUI()">Clear</button>
 </div>
 
 
