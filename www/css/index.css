@@ -39,3 +39,16 @@ body {
 .field{
     margin: 16px;
 }
+
+.indent{
+    margin-left: 16px;
+}
+
+#settings{
+    font-family: monospace;
+    background: #cccccc;
+}
+
+.controls .button{
+    margin-right: 16px;
+}

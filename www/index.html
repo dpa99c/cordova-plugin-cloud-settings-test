@@ -13,17 +13,27 @@
 
 <div class="field">
     <p>Cloud settings exist: <span id="exists"></span></p>
+    <p>Last updated: <span id="updated"></span></p>
 </div>
 
-<div class="field">
-    <label for="data">Data</label>
-    <input id="data" placeholder="Enter some data" />
+<p>Settings</p>
+<div id="settings">
+    {
+    <div class="indent">
+        "id": <input id="id" type="number" placeholder="Enter an ID" />,<br/>
+        "preferences": {
+        <div class="indent">
+            "language": <input id="language" type="text" placeholder="Enter a language" />
+        </div>
+        }
+    </div>
+    }
 </div>
 
-<div class="field">
-    <button onclick="saveSettings()">Save</button>
-    <button onclick="loadSettings()">Load</button>
-    <button onclick="clearUI()">Clear</button>
+<div class="controls field">
+    <button onclick="saveSettings()">Save settings</button>
+    <button onclick="loadSettings()">Load settings</button>
+    <button onclick="clearUI()">Clear UI</button>
 </div>
 
 

@@ -1,8 +1,11 @@
-var $output, $data, $exists;
+var $output, $exists, $updated,
+    $id, $language;
 function onDeviceReady(){
     $output = $('#log-output');
-    $data = $('#data');
     $exists = $('#exists');
+    $updated = $('#updated');
+    $id = $('#id');
+    $language = $('#language');
 
     log("deviceready");
 
@@ -20,7 +23,7 @@ $(document).on('deviceready', onDeviceReady);
 
 function clearUI(){
     $output.empty();
-    $data.val('');
+    $('#settings input').val('');
 }
 
 function stringify(str){
@@ -61,19 +64,29 @@ function onSuccess(action){
 function loadSettings(){
     cordova.plugin.cloudsettings.load(function(settings){
         onSuccess("loadSettings");
-        $data.val(settings.data);
+        setLastUpdated(settings);
+        $id.val(settings.id);
+        $language.val(settings.preferences.language);
     }, onError.bind(this, "loadSettings"));
 }
 
 function saveSettings(){
     log("saveSettings");
-    var data = {
-        data: $data.val()
+    var settings = {
+        id: $id.val(),
+        preferences:{
+            language: $language.val()
+        }
     };
-    cordova.plugin.cloudsettings.save(data, function(){
+    cordova.plugin.cloudsettings.save(settings, function(_settings){
         onSuccess("saveSettings");
+        setLastUpdated(_settings);
         checkExists();
     }, onError.bind(this, "saveSettings"));
+}
+
+function setLastUpdated(settings){
+    $updated.text((new Date(settings.timestamp)).toISOString());
 }
 
 function checkExists(cb){
