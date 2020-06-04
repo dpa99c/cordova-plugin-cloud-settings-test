@@ -7,7 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "cordova-android": "^6.3.0",
-    "cordova-ios": "^4.5.4",
+    "cordova-ios": "^6.0.0",
     "cordova-plugin-cloud-settings": "*",
     "cordova-plugin-whitelist": "^1.3.3"
   },
