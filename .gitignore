@@ -1,8 +1,5 @@
 /.idea
 /platforms
-/plugins/*/**
-/plugins/android.json
-/plugins/ios.json
+/plugins
 /node_modules
 /package-lock.json
-/plugins/cordova-plugin-cloud-settings
