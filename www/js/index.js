@@ -7,6 +7,8 @@ function onDeviceReady(){
     $id = $('#id');
     $language = $('#language');
 
+    $('body').addClass(cordova.platformId);
+
     log("deviceready");
 
     cordova.plugin.cloudsettings.onRestore(onRestore);
@@ -101,3 +103,4 @@ function onRestore(){
     log("onRestore");
     loadSettings();
 }
+
